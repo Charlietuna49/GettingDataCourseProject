@@ -176,6 +176,24 @@ head(select(by_subject_activity,subject,activities, 3:60))
 
 ```
 
+## remove _ from headings,also change sd to standdeviation
+```{r}
+finalNames<-names(by_subject_activity)
+finalNames<-gsub(pattern="_",replacement ="",x = finalNames)
+finalNames<-gsub(pattern="sd$",replacement ="standarddeviation",x = finalNames)
+names(by_subject_activity)<-finalNames
+```
+
+
+## write final tidy data set  
+```{r}
+write.table(by_subject_activity,"finalTidyDataSet",row.names =F)
+
+```
+
+
+
+
 
 
 

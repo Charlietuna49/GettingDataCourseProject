@@ -65,7 +65,13 @@ by_subject_activity<-join %>%
   group_by(subject,activities) %>%
   summarise_each(funs(mean,sd),-activity)
 
-  
+## remove _ from headings,also change sd to standdeviation
+finalNames<-names(by_subject_activity)
+finalNames<-gsub(pattern="_",replacement ="",x = finalNames)
+finalNames<-gsub(pattern="sd$",replacement ="standarddeviation",x = finalNames)
+names(by_subject_activity)<-finalNames
+
+## write final tidy data set  
 write.table(by_subject_activity,"finalTidyDataSet",row.names =F)
 
 
